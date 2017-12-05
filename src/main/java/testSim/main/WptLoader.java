@@ -7,7 +7,7 @@ import edu.illinois.mitra.cyphyhouse.objects.PositionList;
 import java.io.*;
 public final class WptLoader {
 	
-	private WptLoader() {
+	public WptLoader() {
 	}
 	
 	public static PositionList<ItemPosition> loadWaypoints(String file) {

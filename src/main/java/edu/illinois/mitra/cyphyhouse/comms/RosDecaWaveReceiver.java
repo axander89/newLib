@@ -8,6 +8,8 @@ import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.util.Enumeration;
 import java.util.Vector;
+import java.io.*;
+import java.util.*;
 
 import edu.illinois.mitra.cyphyhouse.exceptions.ItemFormattingException;
 import edu.illinois.mitra.cyphyhouse.gvh.GlobalVarHolder;
@@ -23,6 +25,8 @@ import edu.illinois.mitra.cyphyhouse.objects.ObstacleList;
 import edu.illinois.mitra.cyphyhouse.objects.PositionList;
 import edu.illinois.mitra.cyphyhouse.ros.JavaRosWrapper;
 import ros.msgs.geometry_msgs.Point;
+
+import testSim.main.WptLoader;
 
 /**
  * Hardware specific. Opens a UDP socket for receiving GPS broadcasts. 
@@ -46,7 +50,7 @@ public class RosDecaWaveReceiver extends Thread implements GpsReceiver {
 	private String name = null;
 	private boolean received = false;
 
-	private final int[][] goalpos = {{10,20,0},{30,40,0},{50,60,0},{70,80,0}};
+	private final int[][] goalpos = {{10,20,0},{-2,40,0},{50,60,0},{70,80,0}};
 	
 
 	public RosDecaWaveReceiver(GlobalVarHolder gvh, String TopicName, PositionList robotPositions,
@@ -68,7 +72,11 @@ public class RosDecaWaveReceiver extends Thread implements GpsReceiver {
 		gvh.log.i(TAG, "Subscribing to ROS TOPIC " + TopicName);
 		gvh.trace.traceEvent(TAG, "Created", gvh.time());
 
-		WaypointHelper();
+		//WptLoader loader = new WptLoader();
+		//loader.loadWaypoints("square.wpt");
+		//this.waypointPositions = loader.loadWaypoints("square.wpt");
+		//WaypointHelper();
+		WaypointLoader("waypoints/testpt.wpt");
 	}
 
 
@@ -80,7 +88,29 @@ public class RosDecaWaveReceiver extends Thread implements GpsReceiver {
 					goalpos[i][0], goalpos[i][1], goalpos[i][2]);
 			this.waypointPositions.update(temp);
 		}
+
 	}
+
+	public void WaypointLoader(String filename){
+		Scanner scan;
+		try{
+			scan = new Scanner(new File(filename));
+			int cur_wpt = 0;
+			while(scan.hasNext()){
+				String line_input = scan.nextLine();
+				String[] numbers = line_input.split(" ");
+				ItemPosition temp = new ItemPosition("Goal"+Integer.toString(cur_wpt), 
+				Integer.parseInt(numbers[0]), Integer.parseInt(numbers[1]), Integer.parseInt(numbers[2]));
+				cur_wpt++;
+				this.waypointPositions.update(temp);
+			}
+		}
+		catch(Exception e){
+			System.out.println("Waypoint file not found");
+		}	
+		
+	}
+
 
 
 
