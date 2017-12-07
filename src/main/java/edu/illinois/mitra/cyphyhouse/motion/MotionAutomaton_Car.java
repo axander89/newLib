@@ -104,27 +104,18 @@ public class MotionAutomaton_Car extends RobotMotion {
 		startMotion();
 	
 	return;
-	//goTo(dest, obsList);
-	//Model_iRobot model = (Model_iRobot)gvh.gps.getMyPosition();
-	//if(name.matches("iRobot0")){
-	//	System.out.println("Retrieved value " + model.TESTX + " from gvh: " + name);
-	//}
-
-
-		
-
-
-
-       /* if(!temp.isEmpty()) {
-            obsList = temp.elementAt(index);
-        }
-        else {
-            obsList = new ObstacleList();
-        }
-        //obsList = new ObstacleList();
-		// work in progress here
-		goTo(dest, obsList);*/
 	}
+
+	public void goToLast(ItemPosition dest) {
+
+		wrapper.createTopic("Waypoint");
+		wrapper.sendMsg(dest);	
+		// ADD FLAGS HERE IN FUTURE
+		startMotion();
+	
+	return;
+	}
+
 
 	public void turnTo(ItemPosition dest) {
 		if((inMotion && !this.destination.equals(dest)) || !inMotion) {

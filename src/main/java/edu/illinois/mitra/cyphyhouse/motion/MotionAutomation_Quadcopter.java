@@ -70,6 +70,10 @@ public class MotionAutomation_Quadcopter extends RobotMotion {
 		goTo(dest);
 	}
 
+	public void goToLast(ItemPosition dest){
+		return;
+	}
+
 	public void goTo(ItemPosition dest) {
 		if((inMotion && !this.destination.equals(dest)) || !inMotion) {
 			done = false;

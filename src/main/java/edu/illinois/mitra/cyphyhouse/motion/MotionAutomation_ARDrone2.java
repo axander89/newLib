@@ -146,6 +146,9 @@ public class MotionAutomation_ARDrone2 extends RobotMotion {
     public void goTo(ItemPosition dest, ObstacleList obsList) {
         goTo(dest);
     }
+	public void goToLast(ItemPosition dest){
+		return;
+	}
 
     public void goTo(ItemPosition dest) {
 //        Log.i("Automation ARDrone2", "GoTo called!!!");

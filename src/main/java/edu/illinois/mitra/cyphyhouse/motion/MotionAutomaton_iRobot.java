@@ -188,6 +188,11 @@ public class MotionAutomaton_iRobot extends RobotMotion {
 
 		//RA.doReachAvoid(dest, dest, obsList);
 	}
+
+	public void goToLast(ItemPosition dest){
+		return;
+	}
+
 	
 	public void goTo(ItemPosition dest) {
 	//System.out.println("DOING GOTO\n");
@@ -229,6 +234,7 @@ public class MotionAutomaton_iRobot extends RobotMotion {
 			startMotion();
 		}
 	}
+
 
 	@Override
 	public synchronized void start() {

@@ -45,6 +45,10 @@ public class IdealSimMotionAutomaton extends RobotMotion implements RobotEventLi
 		goTo(dest,obsList);
 	}
 
+	public void goToLast(ItemPosition dest){
+		return;
+	}
+
 	@Override
 	public void turnTo(ItemPosition dest) {
 		// turnTo isn't implemented for ideal motion		
