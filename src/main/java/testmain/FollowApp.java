@@ -37,7 +37,7 @@ public class FollowApp extends LogicThread {
     ItemPosition currentDestination;
 
     private enum Stage {
-        INIT, PICK, GO, DONE, WAIT
+        INIT, PICK, GO, DONE, WAIT, GO_LAST
     };
 
     private Stage stage = Stage.INIT;
@@ -83,13 +83,17 @@ public class FollowApp extends LogicThread {
                         }
 			
 			System.out.println(gvh.plat.moat.getClass().getName());
-			if(destIndex != 0)
+			if(destIndex != 0){
                         	gvh.plat.moat.goTo(currentDestination);
-			else
+				stage = Stage.GO;
+			}
+			else{
 				gvh.plat.moat.goToLast(currentDestination);
+				stage = Stage.GO_LAST;
+			}
 
 			
-                        stage = Stage.GO;
+                  
                     }
                     break;
                 case GO:
@@ -106,6 +110,23 @@ public class FollowApp extends LogicThread {
                         stage = Stage.WAIT;
                     }
                     break;
+				case GO_LAST:
+					if(!gvh.plat.moat.inMotion) {
+                        if(!goForever) {
+                            if (currentDestination != null)
+                                destinations.remove(currentDestination.getName());
+                        }
+                        RobotMessage inform = new RobotMessage("ALL", name, ARRIVED_MSG, Integer.toString(msgNum));
+                        msgNum++;
+                        gvh.log.d(TAG, "At Goal, sent message");
+                        gvh.comms.addOutgoingMessage(inform);
+                        arrived = true;
+                        stage = Stage.DONE;
+					}
+					break;
+		
+
+		
                 case WAIT:
 			System.out.println("STAGE WAIT\n");
                     if((messageCount >= numBots - 1) && arrived) {

@@ -96,21 +96,26 @@ public class Initiator implements MessageListener{
 
     public void launch(int numWaypoints, int runNum) {
         if(!launched) {
-            if(gvh.gps.getWaypointPositions().getNumPositions() == numWaypoints) {
+           /* if(gvh.gps.getWaypointPositions().getNumPositions() == numWaypoints) {
                 if(ENABLE_TRACING)
                     gvh.trace.traceStart(runNum);
                 launched = true;
                 gvh.trace.traceSync("APPLICATION LAUNCH", gvh.time());
 
-                //RobotMessage informLaunch = new RobotMessage("ALL", gvh.id.getName(), Common.MSG_ACTIVITYLAUNCH, new MessageContents(Common.intsToStrings(numWaypoints, runNum)));
-                //gvh.comms.addOutgoingMessage(informLaunch);
+
                 results = executor.submit(runThread);
             } else {
-		//System.out.println(Arrays.toString(gvh.gps.getWaypointPositions().getList()));
+	
 		System.out.println(gvh.gps.getWaypointPositions().getList());
 
                 System.err.println("Should have " + numWaypoints + " waypoints, but I have " + gvh.gps.getWaypointPositions().getNumPositions());
-            }
+            }*/
+		if(ENABLE_TRACING)
+                    gvh.trace.traceStart(runNum);
+                launched = true;
+                gvh.trace.traceSync("APPLICATION LAUNCH", gvh.time());
+
+                results = executor.submit(runThread);
         }
     }
 

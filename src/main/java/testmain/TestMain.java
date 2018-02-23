@@ -61,7 +61,7 @@ public class TestMain {
             init.connect();
 
 
-            appToRun = new FollowApp(gvh);
+            appToRun = new AddnumApp(gvh);
 
 
             init.createAppInstance(appToRun);
