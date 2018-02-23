@@ -65,7 +65,7 @@ public class RosDecaWaveReceiver extends Thread implements GpsReceiver {
 		this.obs = obs;
 		this.viewsOfWorld = viewsOfWorld;
 	
-		wrapper = new JavaRosWrapper("ws://localhost:9090", "NA", this.gvh, "Car");
+		//wrapper = new JavaRosWrapper("ws://localhost:9090", "NA", this.gvh, "Car");
 		//wrapper.subscribe_to_ROS("position", "Waypoint");
 
 

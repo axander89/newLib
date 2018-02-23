@@ -62,8 +62,8 @@ public class MotionAutomaton_Car extends RobotMotion {
 		name = gvh.id.getName();
 		this.gvh = gvh;
 		this.mymodel = (Model_Car)gvh.gps.getMyPosition();
-		wrapper = new JavaRosWrapper("ws://localhost:9090", name, this.gvh, "Car");
-		wrapper.subscribe_to_ROS("Reached", "Reached Message");
+		//wrapper = new JavaRosWrapper("ws://localhost:9090", name, this.gvh, "Car");
+		//wrapper.subscribe_to_ROS("Reached", "Reached Message");
 		reached = false;
 		
 	}
@@ -76,7 +76,7 @@ public class MotionAutomaton_Car extends RobotMotion {
 		
 		myHandler = handler;
 		
-		wrapper = new JavaRosWrapper("ws://localhost:9090", name, this.gvh, "Car");
+		//wrapper = new JavaRosWrapper("ws://localhost:9090", name, this.gvh, "Car");
 		//wrapper.subscribe_to_ROS("point_msgs", "Waypoint");
 		//wrapper.subscribe_to_ROS("str", "Reached Message");
 		
@@ -144,19 +144,18 @@ public class MotionAutomaton_Car extends RobotMotion {
 				//System.out.println("Doing Motion\n");
 				//reached_goal = true;
 
-				if(reached == true){
-					inMotion = false;
-				}
 				switch(stage){
+					case INIT:
+						reached = false;
+						inMotion = true;
+						stage = stage.MOVING;
 					case MOVING:
+						if(reached == true)
+							stage = stage.GOAL;
 						break;
 
 					case GOAL: 
-						if(mymodel.reached == true){
-							running = false;
-							mymodel.reached = false;
-							reached_goal = true;
-						}
+						inMotion = false;
 						break;
 
 				}
@@ -204,12 +203,12 @@ public class MotionAutomaton_Car extends RobotMotion {
 	
 		running = true;
 	
-		//stage = STAGE.MOVING;
-		inMotion = true;
+		stage = STAGE.INIT;
+		//inMotion = true;
 	
-		reached_goal = false;
+		//reached_goal = false;
 		
-		reached = false;
+		//reached = false;
 		return;
 	}
 	
