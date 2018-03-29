@@ -82,6 +82,7 @@ public class FollowApp extends LogicThread {
 
         while(true) {
             System.out.println(stage+ " "+ robotIndex); 
+			System.out.println(gvh.gps.mGpsReceiver.get_robots());
             switch(stage) {
                 case PICK:
                     arrived = false;
