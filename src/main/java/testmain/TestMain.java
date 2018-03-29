@@ -7,6 +7,12 @@ import edu.illinois.mitra.cyphyhouse.objects.Common;
 
 import java.util.HashMap;
 
+
+
+
+import java.io.IOException;
+import java.net.InetAddress;
+
 /**
  * Created by SC on 11/14/16.
  */
@@ -22,6 +28,53 @@ public class TestMain {
         private static LogicThread appToRun = null;
 
         public static void main(String args[]) {
+
+	/*
+	try{
+		InetAddress localhost = InetAddress.getLocalHost();
+		// this code assumes IPv4 is used
+		byte[] ip = localhost.getAddress();
+
+		for (int i = 1; i <= 254; i++)
+		{
+		    ip[3] = (byte)i;
+		    InetAddress address = InetAddress.getByAddress(ip);
+		if (address.isReachable(1000))
+		{
+		    System.out.println(address + " machine is turned on and can be pinged");
+		}
+		else if (!address.getHostAddress().equals(address.getHostName()))
+		{
+		    System.out.println(address + " machine is known in a DNS lookup");
+		}
+		else
+		{
+		    System.out.println(address + " the host address and host name are equal, meaning the host name could not be resolved");
+		}
+		}
+
+	}
+	catch (Exception e){
+		
+	
+	}
+	*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
             // Load the participants
             //participants = IdentityLoader.loadIdentities(IDENTITY_FILE_URL);
             // Put number of robots being used here
@@ -68,7 +121,7 @@ public class TestMain {
 
 
             init.launch(6, 10);
-
+		
 
 
 			
