@@ -86,8 +86,13 @@ public class FollowApp extends LogicThread {
 			//System.out.println("ROBOT POSITIONS " + gvh.gps.mGpsReceiver.get_robots());
 
 			//TESTING DSM 
+			System.out.println(" ");
+			System.out.println("STARTING UPDATE OF SHARED VARIABLE");
 			dsm.createMW("sum",0);
 			dsm.put("sum","*", 11111);
+			System.out.println("SUM = " + Integer.parseInt(dsm.get("sum","*")));
+			System.out.println("DONE UPDATING SHARED VARIABLE");
+			System.out.println(" ");
 	
             switch(stage) {
                 case PICK:
