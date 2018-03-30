@@ -69,6 +69,13 @@ public class RosDecaWaveReceiver extends Thread implements GpsReceiver {
 		gvh.trace.traceEvent(TAG, "Created", gvh.time());
 
 		WaypointHelper();
+
+		//TESTING (Load something into robotPositions so that list is not empty) 
+		//ItemPosition newpos = new Model_Quadcopter("test quadcopter", 99, 99);
+		//robotPositions.update(newpos, gvh.time());
+		//ItemPosition newpos2 = new Model_Quadcopter("test quadcopter", 1, 1);
+		//robotPositions.update(newpos2, gvh.time());
+
 	}
 
 
@@ -117,6 +124,9 @@ public class RosDecaWaveReceiver extends Thread implements GpsReceiver {
 
 	@Override
 	public void run() {
+		while(running){
+			//System.out.println("gps reciever running");
+		}
 		return;
 	}
 

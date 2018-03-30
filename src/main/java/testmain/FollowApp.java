@@ -27,6 +27,7 @@ import edu.illinois.mitra.cyphyhouse.functions.GroupSetMutex;
 import edu.illinois.mitra.cyphyhouse.interfaces.MutualExclusion;
 
 
+
 public class FollowApp extends LogicThread {
     private static final String TAG = "Follow App";
     private static final int DEST_MSG = 23;
@@ -81,8 +82,13 @@ public class FollowApp extends LogicThread {
          
 
         while(true) {
-            System.out.println(stage+ " "+ robotIndex); 
-			System.out.println(gvh.gps.mGpsReceiver.get_robots());
+            //System.out.println(stage+ " "+ robotIndex); 
+			//System.out.println("ROBOT POSITIONS " + gvh.gps.mGpsReceiver.get_robots());
+
+			//TESTING DSM 
+			dsm.createMW("sum",0);
+			dsm.put("sum","*", 11111);
+	
             switch(stage) {
                 case PICK:
                     arrived = false;
