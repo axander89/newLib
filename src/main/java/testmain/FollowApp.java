@@ -80,6 +80,7 @@ public class FollowApp extends LogicThread {
     @Override
     public List<Object> callStarL() {
          
+		int test_sum = 10000;
 
         while(true) {
             //System.out.println(stage+ " "+ robotIndex); 
@@ -87,12 +88,14 @@ public class FollowApp extends LogicThread {
 
 			//TESTING DSM 
 			System.out.println(" ");
+			//System.out.println("SUM BEFORE COMPUTER UPDATE = " + Integer.parseInt(dsm.get("sum","*")));
 			System.out.println("STARTING UPDATE OF SHARED VARIABLE");
 			dsm.createMW("sum",0);
-			dsm.put("sum","*", 11111);
+			dsm.put("sum","*", test_sum);
 			System.out.println("SUM = " + Integer.parseInt(dsm.get("sum","*")));
 			System.out.println("DONE UPDATING SHARED VARIABLE");
 			System.out.println(" ");
+			test_sum = test_sum + 1;
 	
             switch(stage) {
                 case PICK:
