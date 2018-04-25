@@ -180,7 +180,7 @@ class MapUI:
         UI_WP_LIST = None
         
     def take_off(self):
-        with open("tasks.txt",'a') as file_obj:
+        with open("../tasks.txt",'a') as file_obj:
             message = "0.00 0.00 1.50"
             self.task_id += 1
             message = message + "\n"
@@ -196,7 +196,7 @@ class MapUI:
     def land(self):
         # Send a new task with position (0,0,0) z=0 tells drone to land
         print("land")
-        with open("tasks.txt",'a') as file_obj:
+        with open("../tasks.txt",'a') as file_obj:
             message = "0.00 0.00 0.00"
             message = message + "\n"
             file_obj.write(message.encode())
@@ -297,7 +297,7 @@ def socket_loop():
     #Send new task to reciver on drone, the reciever will write to tasks.txt
     if NEW_TASK_FLAG == True:
        
-        with open("tasks.txt",'a') as file_obj:
+        with open("../tasks.txt",'a') as file_obj:
             new_task = TASK_LIST[len(TASK_LIST)-1]
             task_string = ['{:.2f}'.format(x) for x in new_task]
             message = " ".join(task_string)
@@ -309,7 +309,7 @@ def socket_loop():
     
     #Check if any tasks have been done, if so, remove flame icon from screen
     
-    with open("erase.txt",'r') as erase_file:
+    with open("../erase.txt",'r') as erase_file:
         for line in erase_file:
             task_id = int(line[0])
             if UI_WP_LIST != None:
